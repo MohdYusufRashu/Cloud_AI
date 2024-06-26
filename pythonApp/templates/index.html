@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Model Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 400px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 20px;
+            margin-right: 40px; /* Add margin at the bottom of the form container */
+        }
+        .result-container {
+            background-color: #e6e6e6;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-left: 40px; /* Add margin at the top of the result container */
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-group input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .form-group input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .flower-image {
+            max-width: 100%;
+            max-height: 200px;
+            margin-bottom: 10px;
+            display: block;
+            margin: 0 auto;
+        }
+        h2, p {
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ML Model Predictor</h1>
+        <form method="post">
+            <div class="form-group">
+                <label for="sepal_length">Sepal Length:</label>
+                <input type="number" id="sepal_length" name="sepal_length" step="0.1" placeholder="Enter sepal length" value="{{ data['sepal_length'] if data else '' }}" required>
+            </div>
+            <div class="form-group">
+                <label for="sepal_width">Sepal Width:</label>
+                <input type="number" id="sepal_width" name="sepal_width" step="0.1" placeholder="Enter sepal width" value="{{ data['sepal_width'] if data else '' }}" required>
+            </div>
+            <div class="form-group">
+                <label for="petal_length">Petal Length:</label>
+                <input type="number" id="petal_length" name="petal_length" step="0.1" placeholder="Enter petal length" value="{{ data['petal_length'] if data else '' }}" required>
+            </div>
+            <div class="form-group">
+                <label for="petal_width">Petal Width:</label>
+                <input type="number" id="petal_width" name="petal_width" step="0.1" placeholder="Enter petal width" value="{{ data['petal_width'] if data else '' }}" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Predict">
+            </div>
+        </form>
+    </div>
+    {% if data %}
+    <div class="result-container">
+        <h2>Predicted Flower:</h2>
+        <img src="{{ data['predicted_flower_image_path'] }}" alt="{{ data['predicted_flower_name'] }}" class="flower-image">
+        <p>{{ data['predicted_flower_name'] }}</p>
+    </div>
+    {% endif %}
+</body>
+</html>
+
+
+
+
+
+
+
